@@ -4,13 +4,12 @@
 <div id="home" data="home"></div>
     <header id="site-header" class="site-header valign-center"> 
         <div class="intro">
-
         <!-- <p>International conference on Python for education and scientific computing</p><br> -->
         <img alt="" class="img-responsive center-block img-logo" src="{% static 'website/bootstrap-css/assets/images/backgrounds/SciPy_logo.png' %}"><br>
          <h1>SciPy India 2019</h1>
             <h2>29 &amp; 30 November, 2019 / IIT Bombay</h2>
 
-            <a href="#registration" data-scroll class="btn btn-white">Register now</a>
+            <a data-toggle="modal" data-target="#registermdl" data-scroll class="btn btn-white">Register now</a>
             
         
         </div>
@@ -26,17 +25,7 @@
                     <p class="text-justify">SciPy India is a conference providing opportunities to spread the use of the Python programming language in the Scientific Computing community in India. It provides a unique opportunity to interact with the "Who's who" of the Python for Scientific Computing fraternity and learn, understand, participate, and contribute to Scientific Computing using Python. One of the goals of the conference is to combine education, engineering, and science with computing through the medium of Python.</p>
 
                 </div><!-- /.col-sm-6 -->
-
                 <div class="col-sm-6">
-
-                  <!--  <h3 class="section-title multiple-title">What is Our Goal?</h3>
-
-                    <p class="text-justify">One of the goals of the conference is to combine education, engineering, and science with computing through the medium of Python and thereby extrapolate on how powerful Scientific Computing is in various fields and among different communities.</p>
-
-                    <ul class="list-arrow-right">
-
-                        <li>Have hands on sessions</li>
-                    </ul> -->
                      <h3 class="section-title multiple-title" align="center">News and Updates</h3>
                     <a class="twitter-timeline" data-width="500" data-height="380" href="https://twitter.com/SciPyIndia?ref_src=twsrc%5Etfw">Tweets by SciPyIndia</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
@@ -51,7 +40,7 @@
                 <div class="col-sm-3">
 
                     <i class="ion-ios-calendar"></i>
-                    <h3>2019<br>November 29 & 30</h3>
+                    <h3>2019<br>November 29 &amp; 30</h3>
                 
                 </div>
                 <div class="col-sm-3">
@@ -76,30 +65,26 @@
         </div><!-- container -->
     </section>
 
-    <section id="speakers" class="section speakers">
+   <!--  <section id="speakers" class="section speakers">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
-                    <h3 class="section-title">Speakers</h3>
-                
+                    <h3 class="section-title">Speakers</h3>         
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div class="speaker">
                     <h4>Keynote Speaker</h4>
                         <figure>
-                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}" data-toggle="modal" data-target="#">
+                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}" data-toggle="modal" data-target="#speaker1">
                         </figure>
-
                         <h4>TBD</h4>
-
                         <p>TBD</p>
-                        <div class="modal fade spkrmodal" id="katyhuff" role="dialog">
+                        <div class="modal fade spkrmodal" id="speaker1" role="dialog">
                         <div class="modal-dialog">
-                          <!-- Modal content-->
+                         
                           <div class="modal-content">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -117,63 +102,26 @@
 
                         <ul class="social-block">
                             <li><a href="#" target="_blank"><i class="fa fa-globe"></i></a></li>
-                            <!-- <li><a href="https://www.linkedin.com/in/serge-rey-94748876/" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li> -->
+                            <li><a href="https://www.linkedin.com/in/serge-rey-94748876/" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li> 
                             <li><a href="#" target="_blank"><i class="ion-social-github"></i></a></li>
                         </ul>
 
-                    </div><!-- /.speaker -->
-                </div><!-- /.col-md-4 -->
-
-                <div class="col-md-4">
-                    <div class="speaker">
-                    <h4>Keynote Speaker</h4>
-                        <figure>
-                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}" data-toggle="modal" data-target="#">
-                        </figure>
-
-                        <h4>TBD</h4>
-
-                        <p>TBD</p>
-                        <div class="modal fade spkrmodal" id="katyhuff" role="dialog">
-                        <div class="modal-dialog">
-                          <!-- Modal content-->
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">TBD</h4>
-                            </div>
-                            <div class="modal-body">
-                              <p class="text-justify">TBD</p>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-                        </div>
-                        </div>
-
-                        <ul class="social-block">
-                            <li><a href="#" target="_blank"><i class="fa fa-globe"></i></a></li>
-                            <!-- <li><a href="https://www.linkedin.com/in/serge-rey-94748876/" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li> -->
-                            <li><a href="#" target="_blank"><i class="ion-social-github"></i></a></li>
-                        </ul>
-
-                    </div><!-- /.speaker -->
-                </div><!-- /.col-md-4 -->
+                    </div>
+                </div>
 
                 <div class="col-md-6">
                     <div class="speaker">
                     <h4>Keynote Speaker</h4>
                         <figure>
-                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}" data-toggle="modal" data-target="#">
+                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}" data-toggle="modal" data-target="#speaker2">
                         </figure>
 
                         <h4>TBD</h4>
 
                         <p>TBD</p>
-                        <div class="modal fade spkrmodal" id="katyhuff" role="dialog">
+                        <div class="modal fade spkrmodal" id="speaker2" role="dialog">
                         <div class="modal-dialog">
-                          <!-- Modal content-->
+                        
                           <div class="modal-content">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -191,15 +139,15 @@
 
                         <ul class="social-block">
                             <li><a href="#" target="_blank"><i class="fa fa-globe"></i></a></li>
-                            <!-- <li><a href="https://www.linkedin.com/in/serge-rey-94748876/" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li> -->
+                            <li><a href="https://www.linkedin.com/in/serge-rey-94748876/" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li>
                             <li><a href="#" target="_blank"><i class="ion-social-github"></i></a></li>
                         </ul>
 
-                    </div><!-- /.speaker -->
-                </div><!-- /.col-md-4 -->
-            </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="registration" class="section registration">
       <div class="container">
@@ -207,13 +155,6 @@
                 <div class="col-md-12">
                     <h3 class="section-title">Registration</h3>
                 </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <p class="text-justify" style="color: red;font-weight: bold;">
-                Online registrations are now closed. If you still wish to attend the conference, we have spot registrations subject to availability.
-                </p>
-              </div>
             </div>
             <div class="row">
               <div class="col-md-12">
@@ -291,7 +232,7 @@
                         </div>
                     </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
                           <strong>On-Spot Registration</strong><br>
@@ -308,16 +249,16 @@
                           </p>
                         </div>
                     </td>
-                    </tr>
+                    </tr> -->
 
-                  <!--  <tr>
+                    <tr>
 
               <td colspan="2">
               <p class="text-justify"><span><b>Payment instructions:</b></span></p>
                 <p><span class="text-justify">Please read the instructions carefully, before proceeding for Registration.</span></p>
                 <ol>
                 <li><span class="text-justify">Please make the payment for the conference through Net banking using NEFT or RTGS or IMPS</span></li>
-                <li><span class="text-justify">Account Details for transaction are mentioned below:</span></li>
+                <li><span class="text-justify">Account Details for transaction are mentioned below:</span>
                 <ul>
                 <li><span class="text-justify">Account Holder Name - The Registrar, IIT Bombay</span></li>
                 <li><span class="text-justify">Bank Name - State Bank of India</span></li>
@@ -327,14 +268,14 @@
                 <li><span class="text-justify">Account number - 10725729128</span></li>
                 <li><span class="text-justify">IFSC Code/ NEFT/ RTGS code - SBIN0001109</span></li>
                 <li><span class="text-justify">Swift Code - SBININBB519</span></li>
-                </ul>
+                </ul></li>
                 <li><span class="text-justify">After successful payment take the screenshot of the final transaction. Save this screenshot as you have to upload it in the form. </span></li>
                 <li><span class="text-justify">Collect your transaction reference number / UTR number from the bank. Note it down somewhere you have to fill this detail in the form as well.</span></li>
                 <li><span class="text-justify">After verification of your payment by our team, we shall send you the ticket for the conference via email. This shall take 10 days.</span>
                 </li>
                 </ol>
               </td>
-              </tr> -->
+              </tr> 
                   </table>
                 </div>
             </div>
@@ -344,7 +285,7 @@
             <p class="text-justify" style="color: red;">
                 *Spot registration will be subject to availability.
                 </p> -->
-            <h3 style="background-color: #7a9725;color: #fff;" class="col-sm-2">Add ons</h3>
+            <h3 style="background-color: #552505;color: #fff;" class="col-sm-2">Add ons</h3>
               </div>
             </div>
             <div class="row">
@@ -384,7 +325,7 @@
             </table>
             </div>
             </div>
-            <!-- <div class="row">
+             <div class="row">
                 <div class="col-md-12">
                     <span><strong>Note:</strong> <ul style="color: red;">
                         <li>
@@ -395,7 +336,7 @@
                         </li>
                     </ul></span>
                 </div>
-            </div> -->
+            </div>
             <div class="row">
               <div class="col-md-12">
               <center>
@@ -431,11 +372,11 @@
                     <h3 class="section-title">Call for Papers</h3>
                     
                     <p>We invite you to submit proposals for talks or workshops to be presented at SciPy 2019. The time duration for talks is 15 minutes and for workshops is 2 to 3 hours. There will be two parallel tracks for the workshops this year. One track is meant for beginners and the other is for advanced users. </p>
-                    <a href="{% url 'website:cfp' %}" class="btn btn-white">
-                    Submit</a>
+                    <center><a data-toggle="modal" data-target="#announce_cfp" class="btn btn-white">
+                    Submit</a></center>
                 </div>
             </div>
-            <div class="row">
+           <!-- <div class="row">
             <div class="col-md-12">
                 <p class="text-justify" style="font-weight: bold;color: red;">
                     Call for Papers is closed.
@@ -444,7 +385,7 @@
                     Kindly <a href="{% url 'auth:login' %}" style="text-decoration: underline;font-weight: bold;">login</a> to view the status of your submission.
                 </p>
             </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -505,7 +446,7 @@
     </section>
 
 
-    <section id="schedule" class="section schedule" style="font-weight: 400;">
+   <!--  <section id="schedule" class="section schedule" style="font-weight: 400;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -534,9 +475,9 @@
 
                 </div>
             </div>
-    </section>
+    </section> -->
 
-    <section id="instructions" class="section instructions" style="font-weight: 400;">
+    <!-- <section id="instructions" class="section instructions" style="font-weight: 400;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -554,7 +495,7 @@
                            <td>Please select the workshop in which you wish to participate (Satellite conference registrants need not submit this form).</td>
                            <td><a href="http://tinyurl.com/SciPy2016-Workshop" target="_blank">View here</a> </td>
                         </tr> -->
-                        <tr>
+                       <!-- <tr>
                            <td>Workshop Instructions</td>
                            <td>These instructions are for all the registered participants. It has the details of the workshops which will be conducted in SciPy India 2018 conference. Please read it carefully and follow the steps to install various software packages.<br>
                               <b>Note:</b> You will not be able to participate in the workshops without installing the above packages. There will not be any separate setup session at the venue.
@@ -566,12 +507,12 @@
                            <td >1)<b> Workshop</b>: Introductory Scientific Computing with Python: Ipython, Matplotlib, NumPy, SciPy - Prof. Prabhu Ramachandran<br></td>
                            <td><a href="http://scipy.in/2016/downloads/workshop/intro_scipy_circulate.zip" target="_blank">View here</a> </td>
                         </tr>-->
-                     </tbody>
+                     <!-- </tbody>
                      </table>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="venue" class="section venue">
         <div class="container">
@@ -605,7 +546,7 @@
     </section>
 
 
-    <section id="sponsor" class="section sponsor">
+    <!-- <section id="sponsor" class="section sponsor">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -628,7 +569,7 @@
                     </p>
                 </div>
             </div>
-    </section>
+    </section> -->
 
     <section id="poster" class="section poster">
         <div class="container">
@@ -650,84 +591,6 @@
                 </div>
             </div>
     </section>
-
-<!--    <section id="faq" class="section faq">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="section-title">Event FAQs</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                        
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne">
-                                <h4 class="panel-title">
-                                    <a class="faq-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne"> What is the price of the ticket ?</a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                                <div class="panel-body">
-                                    <h3>TBD</h3>
-                                    <p>Follow on facebook</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingTwo">
-                                <h4 class="panel-title">
-                                    <a class="faq-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"> What is included in my ticket ?</a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                                <div class="panel-body">Depends</div>
-                            </div>
-                        </div>
-  
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingThree">
-                                <h4 class="panel-title">
-                                    <a class="faq-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> Office address ?</a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-                                <div class="panel-body">IIT Bombay</div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingFour">
-                                <h4 class="panel-title">
-                                    <a class="faq-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> How should I dress ?</a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-                                <div class="panel-body">Decent formal wear</div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingFive">
-                                <h4 class="panel-title">
-                                    <a class="faq-toggle collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive"> I have specific questions that are not addressed here. Who can help me ?</a>
-                                </h4>
-                            </div>
-
-                            <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
-                                <div class="panel-body">Drop your query through email to info[at]fossee[dot]in</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </section>-->
 
     <section id="photos" class="section photos">
         <div class="container">
@@ -859,262 +722,6 @@
         </div>
     </section>
 
-<!--    <section id="team" class="section team">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="text-uppercase mt0 font-400">Our Team</h3>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Prof. Prabhu Ramachandran <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Usha Viswanathan <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Vineeta Ghavri <br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Sunil Shetye <br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Ankit R. Javalkar <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Prathamesh S <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Mahesh G <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Binson B <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Akshen D <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Yash V <br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Rohan M <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Prashant S <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Sashi Rekha B M K <br>
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Komal S <br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Priya H <br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="card">
-                                <canvas class="header-bg" width="250" height="70" id="header-blur"></canvas>
-                                <div class="avatar">
-                                    <img src="" alt="" />
-                                </div>
-                                <div class="content">
-                                    <p>Vishal B <br>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    </div>
-                </div>
-            </div>
-    </section> -->  
-
-<!--    <section id="write-us" class="section write-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3 class="section-title">Write to Us</h3>
-                    <p><h5>Feel free to send us an email if you have any questions.</h5></p>
-                </div>
-            </div>
-
-            <form action="#" id="registration-form">
-                <div class="row">
-                    <div class="col-md-12" id="registration-msg" style="display:none;">
-                        <div class="alert"></div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="First Name" id="fname" name="fname" required>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Last Name" id="lname" name="lname" required>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email" id="email" name="email" required>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                        <div class="form-group">
-                            <input type="textarea" class="form-control" placeholder="Your Query" id="query" name="query" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center mt20">
-                    <button type="submit" class="btn btn-black" id="registration-submit-btn">Submit</button>
-                </div>
-            </form>
-        </div>
-    </section> -->
-
     <section id="contact-us" class="section contact-us">
         <div class="container">
             <div class="row">
@@ -1136,53 +743,6 @@
                             </dd>
                         </dl>
                 </div>
-                <!-- <div class="col-md-8">
-                <!-- <div class="row">
-                    <div class="col-md-3 text-center">
-                        <a href="https://fossee.in/" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/fossee_logo.png' %}" style="width:50%" class="text-center"></a><strong><p class="text-center">Fossee</p></strong>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <a href="https://yaksh.fossee.in" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/yaksh_banner.png' %}" style="background:black" class="text-center" ></a><strong><p class="text-center">yaksh - Online Test</p></strong>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <a href="https://python-workshops.fossee.in" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/pylogo.png' %}" style="width:30%;" class="text-center" ></a><strong><p class="text-center">Python Workshop</p></strong>
-                    </div>
-                    <div class="col-md-3 text-center">
-                        <a href="https://www.iitb.ac.in/" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/iitb_logo.png' %}" style="width:30%;" class="text-center"></a>
-    <strong><p class="text-center">IIT Bombay</p></strong>
-                    </div>
-                </div> -->
-                 <!-- <div class="table-responsive">
-                    <table class="table">
-                         <tr>
-                            <td style="vertical-align:bottom;border-top:none;!important">
-                            <div class="text-center align-baseline">
-                        <a href="https://fossee.in/" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/fossee_logo.png' %}" style="width:60%" class="text-center"></a>
-                    </div>
-                            </td>
-                            <!-- <td style="vertical-align:bottom;border-top:none;!important">
-                            <div class="text-center align-baseline">
-                        <a href="https://yaksh.fossee.in" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/yaksh_banner.png' %}" style="background:black;padding: 5%;" class="text-center" ></a>
-                    </div>
-                            </td> 
-                            <td style="vertical-align:bottom;border-top:none;!important">
-                            <div class="text-center align-baseline">
-                        <a href="https://python-workshops.fossee.in" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/pylogo.png' %}" style="width:30%;" class="text-center" ></a>
-                    </div>
-                    </td>
-                    <td style="vertical-align:bottom;border-top:none;!important">
-                            <div class="text-center align-baseline">
-                        <a href="https://www.iitb.ac.in/" target="_blank"><img src="{% static 'website/bootstrap-css/assets/images/iitb_logo.png' %}" style="width:40%;" class="text-center"></a>
-                    </div>
-                         </tr>
-                         <tr>
-                            <td style="vertical-align:top;border-top:none;!important"><strong><p class="text-center">FOSSEE</p></strong></td>
-                            <td style="vertical-align:top;border-top:none;!important"><strong><p class="text-center">YAKSH - Online Test Platform</p></strong></td> 
-                            <td style="vertical-align:top;border-top:none;!important"><strong><p class="text-center">Python Workshop</p></strong></td>
-                            <td style="vertical-align:top;border-top:none;!important"><strong><p class="text-center">IIT Bombay</p></strong></td>
-                         </tr>
-                    </table>
-                </div> -->
                 </div>
             </div>
     </section>

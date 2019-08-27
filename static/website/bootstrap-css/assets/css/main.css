@@ -176,8 +176,8 @@ color: #000;
 background-color: #ceab6a;
 }
 .btn-primary{
-  color: #000;
-  background-color: #b1c533;
+  color: #fff;
+  background-color: #552505;
 }
 .btn-info{
   color: #000;
@@ -186,7 +186,7 @@ background-color: #ceab6a;
 
 .facts i {
 
-color: #f0ee6e;
+color: #ceab6a;
 font-size: 3em;
 
 }
@@ -195,7 +195,7 @@ font-size: 3em;
 .btn-black {
 
 color: #fff;
-background-color: #b1c533;
+background-color: #552505;
 
 }
 /*.section-title {
