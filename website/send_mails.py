@@ -1,5 +1,3 @@
-__author__ = "Akshen Doke"
-
 import hashlib
 import logging
 import logging.config
@@ -111,20 +109,20 @@ def send_email(request, call_on,
         print(LOG_FOLDER)
     if call_on == "Registration":
         message = dedent("""\
-                    Thank you for registering for SciPy India 2018.
+                    Thank you for registering for SciPy India 2019.
                     You can now proceed to submit a paper/workshop for the conference.
 
                     In case of queries regarding submitting a proposal,
                     revert to this email.""".format(settings.PRODUCTION_URL, key))
         try:
             send_mail(
-                "User Registration - SciPy India 2018, FOSSEE, IIT Bombay", message, SENDER_EMAIL,
+                "User Registration - SciPy India 2019, FOSSEE, IIT Bombay", message, SENDER_EMAIL,
                 [request.user.email], fail_silently=True
             )
 
         except Exception:
             send_smtp_email(request=request,
-                            subject="User Registration - SciPy India 2018, FOSSEE, IIT Bombay",
+                            subject="User Registration - SciPy India 2019, FOSSEE, IIT Bombay",
                             message=message, other_email=request.user.email,
                             )
 
