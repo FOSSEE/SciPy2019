@@ -115,7 +115,7 @@ def send_email(request, call_on,
                     You can now proceed to submit a paper/workshop for the conference.
 
                     In case of queries regarding submitting a proposal,
-                    revert to this email.""".format(PRODUCTION_URL, key))
+                    revert to this email.""".format(settings.PRODUCTION_URL, key))
         try:
             send_mail(
                 "User Registration - SciPy India 2018, FOSSEE, IIT Bombay", message, SENDER_EMAIL,

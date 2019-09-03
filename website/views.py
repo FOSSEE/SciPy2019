@@ -12,11 +12,11 @@ from django.views.decorators.csrf import (csrf_exempt, csrf_protect,
                                           requires_csrf_token)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from website.models import Proposal, Comments, Ratings
+from website.models import Proposal, Comments, Ratings, CFP, RegistrationDetail
 
 from website.forms import (ProposalForm, UserRegisterForm, UserRegistrationForm,
                            UserLoginForm, WorkshopForm)  # ,ContactForm
-from website.models import Proposal, Comments, Ratings
+from website.models import Proposal, Comments, Ratings, get_document_dir
 from social.apps.django_app.default.models import UserSocialAuth
 from django.contrib.auth import authenticate, login, logout
 import datetime, time
@@ -24,6 +24,7 @@ from django.core.mail import EmailMultiAlternatives
 import os
 from Scipy2019.config import *
 from website.send_mails import send_email
+from datetime import datetime
 
 
 def is_email_checked(user):
@@ -39,6 +40,12 @@ def is_superuser(user):
 
 def index(request):
     context = {}
+    registration_details = RegistrationDetail.objects.all()
+    context['registration_details'] = registration_details
+    # regular_dates = ImportantDate.objects.get(category='Regular')
+    # context['regular_dates'] = regular_dates
+    # lite_dates = ImportantDate.objects.get(category='Lite')
+    # context['lite_dates'] = lite_dates
     template = loader.get_template('index.html')
     return HttpResponse(template.render(context, request))
 
@@ -130,8 +137,11 @@ def view_abstracts(request):
 @requires_csrf_token
 def cfp(request):
     user = request.user
+    cfp_dates = CFP.objects.get(id=1)
+    context={}
+    context['cfp_dates'] = cfp_dates
     if request.user.is_authenticated:
-        return render(request, 'cfp.html')
+        return render(request, 'cfp.html', context)
     else:
         if request.method == "POST":
             context = {}
@@ -144,13 +154,15 @@ def cfp(request):
                 login(request, user)
                 proposals = Proposal.objects.filter(user=request.user).count()
                 context['user'] = user
-                return redirect('/2018/cfp')
+                #context['cfp_dates'] = 'August 20'
+                return redirect('/2019/cfp')
                 #template = loader.get_template('index.html')
                 #return render(request, 'index.html', context)
             else:
                 context['invalid'] = True
                 context['form'] = UserLoginForm
                 context['user'] = user
+                #context['cfp_dates'] = 'August 20'
                 #context['proposals_a'] = proposals_a
                 return render(request, 'cfp.html', context)
         else:
@@ -158,7 +170,7 @@ def cfp(request):
             context = {'request': request,
                        'user': request.user,
                        'form': form,
-                       }
+                    }
             template = loader.get_template('cfp.html')
             return HttpResponse(template.render(context, request))
 
@@ -167,9 +179,10 @@ def cfp(request):
 @login_required
 def submitcfp(request):
     context = {}
+    cfp_dates = CFP.objects.get(id=1)
+    context['cfp_dates'] = cfp_dates
     if request.user.is_authenticated:
         social_user = request.user
-
         django_user = User.objects.get(username=social_user)
         context['user'] = django_user
         proposals_a = Proposal.objects.filter(
@@ -180,24 +193,25 @@ def submitcfp(request):
                 data = form.save(commit=False)
                 data.user = django_user
                 data.email = social_user.email
+               # data.attachment = request.FILES
                 data.save()
                 context['proposal_submit'] = True
-                sender_name = "SciPy India 2018"
+                sender_name = "SciPy India 2019"
                 sender_email = TO_EMAIL
-                subject = "SciPy India 2018 – Paper Submission Acknowledgement "
+                subject = "SciPy India 2019 – Paper Submission Acknowledgement "
                 to = (social_user.email, TO_EMAIL)
                 message = """
                 Dear {0}, <br><br>
-                Thank you for showing interest & submitting a paper proposal at SciPy India 2018 
+                Thank you for showing interest & submitting a paper proposal at SciPy India 2019 
                 for the paper titled {1}. Reviewal of the proposals will start 
                 once the CFP closes.
                 You will be notified regarding comments/selection/rejection of your paper via email. 
                 Visit this {2} link to view the status of your submission.
-                <br>Thank You. <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+                <br>Thank You. <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                 """.format(
                     social_user.first_name,
                     request.POST.get('title', None),
-                    'https://scipy.in/2018/view-abstracts/',)
+                    'https://scipy.in/2019/view-abstracts/',)
                 email = EmailMultiAlternatives(
                     subject, '',
                     sender_email, to,
@@ -209,6 +223,7 @@ def submitcfp(request):
             else:
                 context['proposal_form'] = form
                 context['proposals_a'] = proposals_a
+                
                 template = loader.get_template('submit-cfp.html')
                 return HttpResponse(template.render(context, request))
         else:
@@ -224,6 +239,8 @@ def submitcfp(request):
 @login_required
 def submitcfw(request):
     context = {}
+    cfp_dates = CFP.objects.get(id=1)
+    context['cfp_dates'] = cfp_dates
     if request.user.is_authenticated:
         social_user = request.user
         # context.update(csrf(request))
@@ -239,20 +256,20 @@ def submitcfw(request):
                 data.email = social_user.email
                 data.save()
                 context['proposal_submit'] = True
-                sender_name = "SciPy India 2018"
+                sender_name = "SciPy India 2019"
                 sender_email = TO_EMAIL
-                subject = "SciPy India 2018 – Workshop Proposal Submission Acknowledgment"
+                subject = "SciPy India 2019 – Workshop Proposal Submission Acknowledgment"
                 to = (social_user.email, TO_EMAIL)
                 message = """
                 Dear {0}, <br><br>
-                Thank you for showing interest & submitting a workshop proposal at SciPy India 2018 conference for the workshop titled <b>“{1}”</b>. Reviewal of the proposals will start once the CFP closes.
+                Thank you for showing interest & submitting a workshop proposal at SciPy India 2019 conference for the workshop titled <b>“{1}”</b>. Reviewal of the proposals will start once the CFP closes.
                 <br><br>You will be notified regarding comments/selection/rejection of your workshop via email.
                 Visit this {2} link to view status of your submission.
-                <br>Thank You ! <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+                <br>Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                 """.format(
                     social_user.first_name,
                     request.POST.get('title', None),
-                    'https://scipy.in/2018/view-abstracts/',)
+                    'https://scipy.in/2019/view-abstracts/',)
                 email = EmailMultiAlternatives(
                     subject, '',
                     sender_email, to,
@@ -346,7 +363,7 @@ def abstract_details(request, proposal_id=None):
                 proposal = Proposal.objects.get(id=proposal_id)
                 if proposal.user == user:
                     try:
-                        url = '/2018'+str(proposal.attachment.url)
+                        url = '/2019'+str(proposal.attachment.url)
                         context['url'] = url
                     except:
                         pass
@@ -414,7 +431,7 @@ def comment_abstract(request, proposal_id=None):
             try:
                 proposal = Proposal.objects.get(id=proposal_id)
                 try:
-                    url = '/2018'+str(proposal.attachment.url)
+                    url = '/2019'+str(proposal.attachment.url)
                     context['url'] = url
                 except:
                     pass
@@ -425,35 +442,35 @@ def comment_abstract(request, proposal_id=None):
                     comment.proposal = proposal
                     comment.save()
                     comments = Comments.objects.filter(proposal=proposal)
-                    sender_name = "SciPy India 2018"
+                    sender_name = "SciPy India 2019"
                     sender_email = TO_EMAIL
                     to = (proposal.user.email, TO_EMAIL)
                     if proposal.proposal_type == 'ABSTRACT':
-                        subject = "SciPy India 2018 - Comment on Your talk Proposal"
+                        subject = "SciPy India 2019 - Comment on Your talk Proposal"
                         message = """
                             Dear {0}, <br><br>
                             There is a comment posted on your proposal for the talk titled <b>{1}</b>.<br>
                             Once we receive your response, you will be notified regarding further comments/acceptance/ rejection of your talk/workshop via email. 
                             Log in to view the comments on your submission.<br><br>
-                            Thank You ! <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+                            Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                             """.format(
                             proposal.user.first_name,
                             proposal.title,
-                            'https://scipy.in/2018/abstract-details/' +
+                            'https://scipy.in/2019/abstract-details/' +
                             str(proposal.id),
                         )
                     elif proposal.proposal_type == 'WORKSHOP':
-                        subject = "SciPy India 2018 - Comment on Your Workshop Proposal"
+                        subject = "SciPy India 2019 - Comment on Your Workshop Proposal"
                         message = """
                             Dear {0}, <br><br>
                             There is a comment posted on your proposal for the workshop titled <b>{1}</b>.<br>
                             Once we receive your response, you will be notified regarding further comments/acceptance/ rejection of your talk/workshop via email. 
                             Log in to view the comments on your submission.<br><br>
-                            Thank You ! <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+                            Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                             """.format(
                             proposal.user.first_name,
                             proposal.title,
-                            'http://scipy.in/2018/abstract-details/' +
+                            'http://scipy.in/2019/abstract-details/' +
                             str(proposal.id),
                         )
                     #email = EmailMultiAlternatives(
@@ -506,38 +523,38 @@ def status(request, proposal_id=None):
             if 'accept' in request.POST:
                 proposal.status = "Accepted"
                 proposal.save()
-                sender_name = "SciPy India 2018"
+                sender_name = "SciPy India 2019"
                 sender_email = TO_EMAIL
                 to = (proposal.user.email, TO_EMAIL)
                 if proposal.proposal_type == 'ABSTRACT':
-                    subject = "SciPy India 2018 - Talk Proposal Accepted"
+                    subject = "SciPy India 2019 - Talk Proposal Accepted"
                     message = """Dear """+proposal.user.first_name+""",
                     Thank you for your excellent submissions!  This year we received many really good submissions.  Due the number and quality of the talks this year we have decided to give 20 minute slots to all the accepted talks.  So even though you may have submitted a 30 minute one, we are sorry you will only have 20 minutes.  Of these 20 minutes please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
                     Pardon the unsolicited advice but it is important that you plan your presentations carefully. 15 minutes is a good amount of time to communicate your central idea. Most really good TED talks finish in 15 minutes.  Keep your talk focussed and please do rehearse your talk and slides to make sure it flows well. If you need help with this, the program chairs can try to help you by giving you some early feedback on your slides.  Just upload your slides before 26th on the same submission interface and we will go over it once.  For anything submitted after 26th we may not have time to comment on but will try to give you feedback.  Please also keep handy a PDF version of your talk in case your own laptops have a problem.
                     Please confirm your participation.  The schedule will be put up online by end of day.  We look forward to hearing your talk.
-                    \n\nYou will be notified regarding instructions of your talk via email.\n\nThank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay"""
+                    \n\nYou will be notified regarding instructions of your talk via email.\n\nThank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay"""
                 elif proposal.proposal_type == 'WORKSHOP':
-                    subject = "SciPy India 2018 - Workshop Proposal Accepted"
+                    subject = "SciPy India 2019 - Workshop Proposal Accepted"
                     message = """Dear """+proposal.user.first_name+""",
                     Thank you for your excellent submissions!  We are pleased to accept your workshop. Due to the large number of submissions we have decided to accept 8 workshops and give all the selected workshops 2 hours each. Please plan for 1 hour and 55 minutes in order to give the participants a 10 minute break between workshops for tea.
                     The tentative schedule will be put up on the website shortly.  Please do provide detailed instructions for the participants (and the organizers if they need to do something for you) in your reply.  Please also confirm your participation.
                     We strongly suggest that you try to plan your workshops carefully and focus on doing things hands-on and not do excessive amounts of theory.  Try to give your participants a decent overview so they can pick up additional details on their own. It helps to pick one or two overarching problems you plan to solve and work your way through the solution of those. 
                     Installation is often a problem, so please make sure your instructions are simple and easy to follow.  If you wish, we could allow some time the previous day for installation help.  Let us know about this.  Also, do not waste too much time on installation during your workshop.
-                    \n\nYou will be notified regarding instructions of your talk via email.\n\nThank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay"""
+                    \n\nYou will be notified regarding instructions of your talk via email.\n\nThank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay"""
                 #send_mail(subject, message, sender_email, to)
                 # context.update(csrf(request))
             elif 'reject' in request.POST:
                 proposal.status = "Rejected"
                 proposal.save()
-                sender_name = "SciPy India 2018"
+                sender_name = "SciPy India 2019"
                 sender_email = TO_EMAIL
                 to = (proposal.user.email, TO_EMAIL, )
                 if proposal.proposal_type == 'ABSTRACT':
-                    subject = "SciPy India 2018 - Talk Proposal Rejected"
+                    subject = "SciPy India 2019 - Talk Proposal Rejected"
                     message = """Dear """+proposal.user.first_name+""",
                    Thank you for your submission to the conference.  Unfortunately, due to the large number of excellent talks that were submitted, your talk was not selected.  We hope you are not discouraged and request you to kindly attend the conference and participate.  We have an excellent line up of workshops (8 in total) and many excellent talks. You may also wish to give a lightning talk (a short 5 minute talk) at the conference if you so desire.
                    We look forward to your active participation in the conference.
-                   \n\nThank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay"""
+                   \n\nThank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay"""
                    # message = """Dear """+proposal.user.first_name+""",
                    # Your talk was rejected because the contents of your work (your report for example) were entirely plagiarized.  This is unacceptable and this amounts to severe academic malpractice and misconduct. As such we do not encourage this at any level whatsoever.  We strongly suggest that you change your ways.  You should NEVER EVER copy paste any content, no matter where you see it.  Even if you cite the place where you lifted material from, it is not acceptable to copy anything verbatim.  Always write in your own words. Your own personal integrity is much more important than a publication.  When giving a tutorial it is understandable that you may use material that someone else has made if you acknowledge this correctly and with their full knowledge.  However, the expectation is that you have done something yourself too.  In your case a bulk of the work seems plagiarized and even if your talk material is your own, your act of plagiarizing content for your report is unacceptable to us.
 
@@ -547,12 +564,12 @@ def status(request, proposal_id=None):
                     # SciPy India Program chairs"""
 
                 elif proposal.proposal_type == 'WORKSHOP':
-                    subject = "SciPy India 2018 - Workshop Proposal Rejected"
+                    subject = "SciPy India 2019 - Workshop Proposal Rejected"
                     message = """Dear """+proposal.user.first_name+""",
                     Thank you for your submission to the conference. 
                     Unfortunately, due to the large number of excellent workshops submitted, yours was not selected. We hope you are not discouraged and request you to kindly attend the conference and participate. We have an excellent line up of workshops (8 in total) and many excellent talks. You may also wish to give a lightning talk (a short 5 minute talk) at the conference if you so desire. 
                     We look forward to your active participation in the conference.
-                    \n\nThank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay"""
+                    \n\nThank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay"""
                    # message = """Dear """+proposal.user.first_name+""",
                   # Thank you for your excellent workshop submission titled “Digital forensics using Python”.  The program committee was really excited about your proposal and thought it was a very good one.  While the tools you use are certainly in the SciPy toolstack the application was not entirely in the domain of the attendees we typically have at SciPy.  This along with the fact that we had many really good workshops that were submitted made it hard to select your proposal this time -- your proposal narrowly missed out.  We strongly suggest that you submit this to other more generic Python conferences like the many PyCon and PyData conferences as it may be a much better fit there.  We also encourage you to try again next year and if we have a larger audience, we may have space for it next year.  This year with two tracks we already have 8 excellent workshops selected.
 
@@ -565,10 +582,10 @@ def status(request, proposal_id=None):
                 # context.update(csrf(request))
             elif 'resubmit' in request.POST:
                 to = (proposal.user.email, TO_EMAIL)
-                sender_name = "SciPy India 2018"
+                sender_name = "SciPy India 2019"
                 sender_email = TO_EMAIL
                 if proposal.proposal_type == 'ABSTRACT':
-                    subject = "SciPy India 2018 - Talk Proposal Resumbmission"
+                    subject = "SciPy India 2019 - Talk Proposal Resumbmission"
                     message = """
                     Dear {0}, <br><br>
                     Thank you for your excellent submissions!  Your talk has been accepted! This year we received many really good submissions.  Due to the number and quality of the talks this year we have decided to give 20 minute slots to all the accepted talks.  So even though you may have submitted a 30 minute one, we are sorry you will only have 20 minutes.  Of these 20 minutes please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
@@ -579,19 +596,19 @@ def status(request, proposal_id=None):
                     """.format(
                         proposal.user.first_name,
                         proposal.title,
-                        'https://scipy.in/2018/view-abstracts/'
+                        'https://scipy.in/2019/view-abstracts/'
                     )
                 elif proposal.proposal_type == 'WORKSHOP':
-                    subject = "SciPy India 2018 - Workshop Proposal Resubmission"
+                    subject = "SciPy India 2019 - Workshop Proposal Resubmission"
                     message = """
-                    Thank you for showing interest & submitting a workshop proposal at SciPy India 2018 conference for the workshop titled <b>"{1}"</b>. You are requested to submit this talk proposal once        again.<br>
+                    Thank you for showing interest & submitting a workshop proposal at SciPy India 2019 conference for the workshop titled <b>"{1}"</b>. You are requested to submit this talk proposal once        again.<br>
                     You will be notified regarding comments/selection/rejection of your workshop via email.
                     Visit this {2} link to view comments on your submission.<br><br>
-                    Thank You ! <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+                    Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                     """.format(
                         proposal.user.first_name,
                         proposal.title,
-                        'https://scipy.in/2018/view-abstracts/'
+                        'https://scipy.in/2019/view-abstracts/'
                     )
                 #email = EmailMultiAlternatives(
                 #    subject, '',
@@ -697,40 +714,40 @@ def status_change(request):
                     proposal.status = "Accepted"
                     proposal.save()
 
-                    sender_name = "SciPy India 2018"
+                    sender_name = "SciPy India 2019"
                     sender_email = TO_EMAIL
                     cc_email = CC_EMAIL
                     bcc_email = BCC_EMAIL
                     to = (proposal.user.email)
                     if proposal.proposal_type == 'ABSTRACT':
-                        subject = "SciPy India 2018 - Talk Proposal Accepted"
+                        subject = "SciPy India 2019 - Talk Proposal Accepted"
 
                         message = """Dear {0}, \n
 Thank you for your excellent submission!  Your talk has been accepted! We have allotted 20 minutes for each talk.  Of these 20 minutes, please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
 
 Please also keep handy a PDF version of your talk in case your own laptop has a problem.
 
-Please confirm your participation via an email to scipy@fossee.in on or before 17 December 2018.  We shall be waiving the registration fee for the speakers. Please fill this form ({1}) to give your details. In case you have already registered we shall reimburse the registration charges at the conference venue.The tentative schedule will be put up online by end of the day. 
+Please confirm your participation via an email to scipy@fossee.in on or before 17 December 2019.  We shall be waiving the registration fee for the speakers. Please fill this form ({1}) to give your details. In case you have already registered we shall reimburse the registration charges at the conference venue.The tentative schedule will be put up online by end of the day. 
 
 We look forward to hearing your talk.
 
-Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay.
+Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
                             'https://tinyurl.com/scipy18-speakers'
                         )
                     elif proposal.proposal_type == 'WORKSHOP':
-                        subject = "SciPy India 2018 - Workshop Proposal Accepted"
+                        subject = "SciPy India 2019 - Workshop Proposal Accepted"
                         message = """Dear {0}, \n
 Thank you for your excellent submission!  We are pleased to accept your workshop. Each workshop is allotted a time slot of 2 hours. Please plan for 1 hour and 55 minutes in order to give the participants a 10 minute break between workshops for tea.
 
-The tentative schedule will be put up on the website shortly. Please confirm your participation via an email to scipy@fossee.in on or before 17 December 2018. We shall be waiving the registration fee for the speakers. Please fill this form ({1}) to give your details. In case you have already registered we shall reimburse the registration charges at the conference venue.
+The tentative schedule will be put up on the website shortly. Please confirm your participation via an email to scipy@fossee.in on or before 17 December 2019. We shall be waiving the registration fee for the speakers. Please fill this form ({1}) to give your details. In case you have already registered we shall reimburse the registration charges at the conference venue.
 
 We also request you to provide detailed instructions for the participants (and the organizers if they need to do something for you). These instructions will be made available on the conference website. Installation is often a problem, so please make sure your instructions are simple and easy to follow.  If you wish, we could allow some time on the previous day for installation help.  Let us know about this.  Also, do not waste too much time on installation during your workshop.
 
 We strongly suggest that you try to plan your workshops carefully and focus on doing things hands-on and not do excessive amounts of theory. Try to give your participants a decent overview so they can pick up additional details on their own. It helps to pick one or two overarching problems you plan to solve and work your way through the solution of those. 
 
-Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay.
+Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
                             'https://tinyurl.com/scipy18-speakers'
@@ -755,18 +772,18 @@ Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay.
                     proposal = Proposal.objects.get(id=proposal_id)
                     proposal.status = "Rejected"
                     proposal.save()
-                    sender_name = "SciPy India 2018"
+                    sender_name = "SciPy India 2019"
                     sender_email = TO_EMAIL
                     cc_email = CC_EMAIL
                     bcc_email = BCC_EMAIL
                     to = (proposal.user.email)
                     if proposal.proposal_type == 'ABSTRACT':
-                        subject = "SciPy India 2018 - Talk Proposal Rejected"
+                        subject = "SciPy India 2019 - Talk Proposal Rejected"
                         message = """Dear """+proposal.user.first_name+""",
 Thank you for your submission to the conference.  Unfortunately, due to a large number of excellent talks that were submitted, your talk was not selected.  We hope you are not discouraged and request you to kindly attend the conference and participate.  We have an excellent line up of workshops (8 in total) and many excellent talks. If you wish to give a lightning talk (a short 5 minute talk) at the conference please let us know on the day of the conference.
 
 We look forward to your active participation in the conference.                  
-Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay."""
+Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay."""
                         # message = """Dear """+proposal.user.first_name+""",
                    # Your talk was rejected because the contents of your work (your report for example) were entirely plagiarized.  This is unacceptable and this amounts to severe academic malpractice and misconduct. As such we do not encourage this at any level whatsoever.  We strongly suggest that you change your ways.  You should NEVER EVER copy paste any content, no matter where you see it.  Even if you cite the place where you lifted material from, it is not acceptable to copy anything verbatim.  Always write in your own words. Your own personal integrity is much more important than a publication.  When giving a tutorial it is understandable that you may use material that someone else has made if you acknowledge this correctly and with their full knowledge.  However, the expectation is that you have done something yourself too.  In your case a bulk of the work seems plagiarized and even if your talk material is your own, your act of plagiarizing content for your report is unacceptable to us.
 
@@ -774,13 +791,13 @@ Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay."""
 
                     # \n\nRegards,\n\nSciPy India Program chairs"""
                     elif proposal.proposal_type == 'WORKSHOP':
-                        subject = "SciPy India 2018 - Workshop Proposal Rejected"
+                        subject = "SciPy India 2019 - Workshop Proposal Rejected"
                         message = """Dear """+proposal.user.first_name+""",
 Thank you for your submission to the conference.  Unfortunately, due to a large number of excellent workshops submitted, yours was not selected.  We hope you are not discouraged and request you to kindly attend the conference and participate.  We have an excellent line up of workshops (8 in total) and many excellent talks. If you wish to give a lightning talk (a short 5 minute talk) at the conference please let us know on the day of the conference.
 
 We look forward to your active participation in the conference.
 
-Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay."""
+Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay."""
                         # message = """Dear """+proposal.user.first_name+""",
                    # Thank you for your excellent workshop submission titled “Digital forensics using Python”.  The program committee was really excited about your proposal and thought it was a very good one.  While the tools you use are certainly in the SciPy toolstack the application was not entirely in the domain of the attendees we typically have at SciPy.  This along with the fact that we had many really good workshops that were submitted made it hard to select your proposal this time -- your proposal narrowly missed out.  We strongly suggest that you submit this to other more generic Python conferences like the many PyCon and PyData conferences as it may be a much better fit there.  We also encourage you to try again next year and if we have a larger audience, we may have space for it next year.  This year with two tracks we already have 8 excellent workshops selected.
 
@@ -806,11 +823,11 @@ Thank You ! \n\nRegards,\nSciPy India 2018,\nFOSSEE - IIT Bombay."""
                 delete_proposal = request.POST.getlist('delete_proposal')
                 for proposal_id in delete_proposal:
                     proposal = Proposal.objects.get(id=proposal_id)
-                    sender_name = "SciPy India 2018"
+                    sender_name = "SciPy India 2019"
                     sender_email = TO_EMAIL
                     to = (proposal.user.email, TO_EMAIL)
                     if proposal.proposal_type == 'ABSTRACT':
-                        subject = "SciPy India 2018 - Talk Proposal Acceptance"
+                        subject = "SciPy India 2019 - Talk Proposal Acceptance"
                         message = """
                         Dear {0}, <br><br>
                         Thank you for your excellent submissions!  Your talk has been accepted! This year, we have received many really good submissions.  Due to the number and quality of the talks this year we have decided to give 20 minute slots to all the accepted talks.  So even though you may have submitted a 30 minute one, we are sorry you will only have 20 minutes.  Of these 20 minutes, please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
@@ -820,23 +837,23 @@ Pardon the unsolicited advice but it is important that you plan your presentatio
 We (the program chairs) are happy to help you by giving you some early feedback on your slides.  Just upload your slides before 26th and we will go over it once.  You may upload your slides by clicking on edit when you login to the site.  You may also modify your abstract if you want to improve it.  For anything submitted after 26th we may not have time to comment but will try to give you feedback.  Please also keep handy a PDF version of your talk in case your own laptops have a problem.
 
 Please confirm your participation via return email.  The tentative schedule will be put up online by end of day.  We look forward to hearing your talk.
-Thank You ! <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
                             proposal.title,
-                            'https://scipy.in/2018/view-abstracts/'
+                            'https://scipy.in/2019/view-abstracts/'
                         )
                     elif proposal.proposal_type == 'WORKSHOP':
-                        subject = "SciPy India 2018 - Workshop Proposal Resubmission"
+                        subject = "SciPy India 2019 - Workshop Proposal Resubmission"
                         message = """
-                        Thank you for showing interest & submitting a workshop proposal at SciPy India 2018 conference for the workshop titled <b>"{1}"</b>. You are requested to submit this talk proposal once        again.<br>
+                        Thank you for showing interest & submitting a workshop proposal at SciPy India 2019 conference for the workshop titled <b>"{1}"</b>. You are requested to submit this talk proposal once        again.<br>
                         You will be notified regarding comments/selection/rejection of your workshop via email.
                         Visit this {2} link to view comments on your submission.<br><br>
-                        Thank You ! <br><br>Regards,<br>SciPy India 2018,<br>FOSSEE - IIT Bombay.
+                        Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
                             proposal.title,
-                            'https://scipy.in/2018/view-abstracts/'
+                            'https://scipy.in/2019/view-abstracts/'
                         )
                     email = EmailMultiAlternatives(
                         subject, '',
@@ -955,7 +972,7 @@ def user_register(request):
                 key=key
             )
 
-            return redirect('/2018/cfp')
+            return redirect('/2019/cfp')
         else:
             if request.user.is_authenticated:
                 return redirect('/view_profile/')
@@ -965,9 +982,9 @@ def user_register(request):
             )
     else:
         if request.user.is_authenticated and is_email_checked(request.user):
-            return redirect('/2018/view-abstracts/')
+            return redirect('/2019/view-abstracts/')
         elif request.user.is_authenticated:
-            return redirect('/2018/cfp')
+            return redirect('/2019/cfp')
         form = UserRegistrationForm()
     return render(request, "user-register.html", {"form": form})
 # required for ticket booking

@@ -9,7 +9,7 @@
          <h1>SciPy India 2019</h1>
             <h2>29 &amp; 30 November, 2019 / IIT Bombay</h2>
 
-            <a data-toggle="modal" data-target="#registermdl" data-scroll class="btn btn-white">Register now</a>
+            <a href="#registration" data-scroll class="btn btn-white">Register now</a>
             
         
         </div>
@@ -175,42 +175,26 @@
                         </div>
                     </td>
                     </tr>
+                    {% for registration_detail in registration_details %}
                     <tr>
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
-                          Early Bird<br>
-                          (till 1 Oct 2019) <br>
-                          INR 1534 (INR 1300 +18% GST)
+                          {{ registration_detail.registration_type }}<br>
+                          {% if not registration_detail.start_date %}
+                          (till {{ registration_detail.end_date|  date:"d M Y"}})<br>
+                          {% else %} 
+                          ({{ registration_detail.start_date|  date:"d M Y"}} to {{ registration_detail.end_date|  date:"d M Y"}})<br>
+                          {% endif %}
+                          {{registration_detail.registration_ticket}}
                         </div>
                     </td>
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
-                          <p class="text-justify">This ticket includes conference (tutorials + talks), lunch, and snacks for 2 days. It does not include Accommodation &amp; T-Shirt. This is a non-refundable ticket. </p>
+                          {{ registration_detail.registration_description| safe }}
                         </div>
                     </td>
                     </tr> 
-                    <tr>
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          Regular<br>
-                          ( 2 Oct to 25 Nov 2019)<br>
-                           INR 1770 (INR 1500 +18% GST)
-                        </div>
-                    </td>
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          This ticket includes conference (tutorials + talks), lunch and snacks for 2 days. It does not include Accommodation &amp; T-Shirt. This is a non-refundable ticket.
-                        </div>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          Lite<br>
-                          (till 28 Nov 2019)<br>
-                          INR 826 (INR 700 +18% GST)
-                        </div>
-                    </td>
+                    {% endfor %}
                     <!-- <td style="border-top:none;!important">
                         <div class="align-baseline">
                           <p class="text-justify">This Ticket allows you to <strong>ONLY</strong> attend the conference for 2 Days (snacks for two days will be served). Does not include any conference amenities (Accommodation, Lunch &amp; T-shirt).This is a non-refundable ticket.  </p>
@@ -225,14 +209,8 @@
                           <br>Subject to Availability
 
                         </div>
-                    </td> -->
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          This ticket includes conference (tutorials + talks), lunch and snacks for 2 days. It does not include Accommodation &amp; T-Shirt. This is a non-refundable ticket. 
-                        </div>
-                    </td>
-                    </tr>
-                    <!-- <tr>
+                    </td> 
+                    <tr>
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
                           <strong>On-Spot Registration</strong><br>
@@ -250,41 +228,35 @@
                         </div>
                     </td>
                     </tr> -->
-
                     <tr>
-
-              <td colspan="2">
-              <p class="text-justify"><span><b>Payment instructions:</b></span></p>
-                <p><span class="text-justify">Please read the instructions carefully, before proceeding for Registration.</span></p>
-                <ol>
-                <li><span class="text-justify">Please make the payment for the conference through Net banking using NEFT or RTGS or IMPS</span></li>
-                <li><span class="text-justify">Account Details for transaction are mentioned below:</span>
-                <ul>
-                <li><span class="text-justify">Account Holder Name - The Registrar, IIT Bombay</span></li>
-                <li><span class="text-justify">Bank Name - State Bank of India</span></li>
-                <li><span class="text-justify">Branch Name - IIT, Powai Branch</span></li>
-                <li><span class="text-justify">Bank address - Adi Shankaracharya marg, IIT Bombay, Powai, Mumbai - 400076</span></li>
-                <li><span class="text-justify">9-Digit Code no. of the bank and the branch - 400002034</span></li>
-                <li><span class="text-justify">Account number - 10725729128</span></li>
-                <li><span class="text-justify">IFSC Code/ NEFT/ RTGS code - SBIN0001109</span></li>
-                <li><span class="text-justify">Swift Code - SBININBB519</span></li>
-                </ul></li>
-                <li><span class="text-justify">After successful payment take the screenshot of the final transaction. Save this screenshot as you have to upload it in the form. </span></li>
-                <li><span class="text-justify">Collect your transaction reference number / UTR number from the bank. Note it down somewhere you have to fill this detail in the form as well.</span></li>
-                <li><span class="text-justify">After verification of your payment by our team, we shall send you the ticket for the conference via email. This shall take 10 days.</span>
-                </li>
-                </ol>
-              </td>
-              </tr> 
+                    <td colspan="2">
+                    <p class="text-justify"><span><b>Payment instructions:</b></span></p>
+                    <p><span class="text-justify">Please read the instructions carefully, before proceeding for Registration.</span></p>
+                        <ol>
+                        <li><span class="text-justify">Please make the payment for the conference through Net banking using NEFT or RTGS or IMPS</span></li>
+                        <li><span class="text-justify">Account Details for transaction are mentioned below:</span>
+                        <ul>
+                        <li><span class="text-justify">Account Holder Name - The Registrar, IIT Bombay</span></li>
+                        <li><span class="text-justify">Bank Name - State Bank of India</span></li>
+                        <li><span class="text-justify">Branch Name - IIT, Powai Branch</span></li>
+                        <li><span class="text-justify">Bank address - Adi Shankaracharya marg, IIT Bombay, Powai, Mumbai - 400076</span></li>
+                        <li><span class="text-justify">9-Digit Code no. of the bank and the branch - 400002034</span></li>
+                        <li><span class="text-justify">Account number - 10725729128</span></li>
+                        <li><span class="text-justify">IFSC Code/ NEFT/ RTGS code - SBIN0001109</span></li>
+                        <li><span class="text-justify">Swift Code - SBININBB519</span></li>
+                        </ul></li>
+                        <li><span class="text-justify">After successful payment take the screenshot of the final transaction. Save this screenshot as you have to upload it in the form. </span></li>
+                        <li><span class="text-justify">Collect your transaction reference number / UTR number from the bank. Note it down somewhere you have to fill this detail in the form as well.</span></li>
+                        <li><span class="text-justify">After verification of your payment by our team, we shall send you the ticket for the conference via email. This shall take 10 days.</span>
+                        </li>
+                        </ol>
+                    </td>
+                    </tr> 
                   </table>
                 </div>
             </div>
             <div class="row">
             <div class="col-md-12">
-            <!--
-            <p class="text-justify" style="color: red;">
-                *Spot registration will be subject to availability.
-                </p> -->
             <h3 style="background-color: #552505;color: #fff;" class="col-sm-2">Add ons</h3>
               </div>
             </div>
@@ -301,10 +273,10 @@
               <td style="border-top:none;!important">
                 <div class="align-baseline">
                  <ul>
-                <li>Accommodation is provided on a shared basis inside IIT-B campus. Accommodation will be provided for 2 days, i.e, 20-21 and 21-22 December. Accommodation does not include other amenities like dinner, etc. Extension of period of stay is not available. This is a non-refundable ticket and non-transferable ticket. </li>
+                <li>Accommodation is provided on a shared basis inside IIT-B campus. Accommodation will be provided for 2 days, i.e, 28-29 and 29-30 November 2019. Accommodation does not include other amenities like dinner, etc. Extension of period of stay is not available. This is a non-refundable ticket. </li>
                 <li>A low-cost accommodation will be provided on sharing basis.</li>    
                 <li><strong>You have to make the payment directly at the the registration desk in cash.</strong></li>
-                <li style="color: red;">*Accommodation is subject to availability for On-spot registrations.</li>
+               <!-- <li style="color: red;">*Accommodation is subject to availability for On-spot registrations.</li> -->
                 </ul> 
                 </div>
               </td>
@@ -318,7 +290,7 @@
               </td>
               <td style="border-top:none;!important">
                 <div class="align-baseline">
-                  Change of size, exchange at the venue is not available. This is a non-refundable ticket and non-transferable ticket. The T-shirt cost will be INR 350/- each. <strong>You will have to make the payment at the registration desk in cash.</strong>
+                 Change of size, exchange at the venue is not available. This is a non-refundable ticket and non-transferable ticket. The T-shirt cost will be INR 350/- each. <strong>You will have to make the payment at the registration desk in cash.</strong>
                 </div>
               </td>
               </tr>
@@ -340,14 +312,14 @@
             <div class="row">
               <div class="col-md-12">
               <center>
-                <a href ="https://docs.google.com/forms/d/e/1FAIpQLSdJIZKToHp_L68op-pqQlvI2SyPwCo5-9PAyVh4lOu8vSd1sw/viewform" class="btn btn-primary" target ="_blank">Register now</a>
+                <a href ="https://docs.google.com/forms/d/1w3CZ4XWA7U8NqGqpKvqfJHCo5XrGw879rgJFh8HfjnE/viewform?edit_requested=true" class="btn btn-white" target ="_blank">Register now</a>
               </center>
               </div>
             </div>
       </div>      
     </section>
 
-    <section id="important_dates" class="section important_dates">
+    <!-- <section id="important_dates" class="section important_dates">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -356,36 +328,25 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <h4>Call for Papers opens on: TBD</h4>
+                    <h4>Call for Papers opens on: {{ cfp_dates.cfp_start_date| date:"d F Y" }}</h4>
                 </div>
                 <div class="col-md-6">
-                    <h4>Call for Papers closes on: TBD</h4>
+                    <h4>Call for Papers closes on: {{ cfp_dates.cfp_end_date| date:"d F Y" }}</h4>
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <section id="contribution" class="section contribution">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="section-title">Call for Papers</h3>
-                    
                     <p>We invite you to submit proposals for talks or workshops to be presented at SciPy 2019. The time duration for talks is 15 minutes and for workshops is 2 to 3 hours. There will be two parallel tracks for the workshops this year. One track is meant for beginners and the other is for advanced users. </p>
-                    <center><a data-toggle="modal" data-target="#announce_cfp" class="btn btn-white">
+                    <center><a href="{% url 'website:cfp' %}" class="btn btn-white">
                     Submit</a></center>
                 </div>
             </div>
-           <!-- <div class="row">
-            <div class="col-md-12">
-                <p class="text-justify" style="font-weight: bold;color: red;">
-                    Call for Papers is closed.
-                </p>
-                <p class="text-justify">
-                    Kindly <a href="{% url 'auth:login' %}" style="text-decoration: underline;font-weight: bold;">login</a> to view the status of your submission.
-                </p>
-            </div>
-            </div> -->
         </div>
     </section>
 
@@ -489,9 +450,8 @@
                            <td width="60%">These instructions give you details about the venue and accommodation. It will also help you during the stay at IIT Bombay. </td>
                            <td><a href="https://static.fossee.in/python/scipy2018/Information-Guide-for-SciPy-India-2018-Conference.pdf" target="_blank">View here</a> </td>
                         </tr>
-                        <!--
                         <tr>
-                           <td>SciPy 2017: <br>Preferred Workshop Track</td>
+                           <td>SciPy 2018: <br>Preferred Workshop Track</td>
                            <td>Please select the workshop in which you wish to participate (Satellite conference registrants need not submit this form).</td>
                            <td><a href="http://tinyurl.com/SciPy2016-Workshop" target="_blank">View here</a> </td>
                         </tr> -->
@@ -502,7 +462,7 @@
                            </td>
                            <td><a href="https://static.fossee.in/python/scipy2018/SciPyIndia-2018-Instruction-Sheet.pdf" target="_blank">View here</a> </td>
                         </tr>
-                        <!--<tr >
+                        <<tr >
                            <td>Workshop Material </td>
                            <td >1)<b> Workshop</b>: Introductory Scientific Computing with Python: Ipython, Matplotlib, NumPy, SciPy - Prof. Prabhu Ramachandran<br></td>
                            <td><a href="http://scipy.in/2016/downloads/workshop/intro_scipy_circulate.zip" target="_blank">View here</a> </td>
@@ -582,12 +542,11 @@
                 <div class="col-md-8">
                     <p class="text-justify">
                         We request you to share the event details through this poster with faculty members, students and others who might be interested. You may print the poster (native size - A4) and display on the notice boards.
-
-                      Download the poster by clicking on the image.  
+                        Download the poster by clicking on the image.  
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <a href="{% static 'website/bootstrap-css/assets/pdf/SciPy2018_pstr.pdf'%}" target="_blank"><img class="img-responsive center-block img-logo" src="{% static 'website/bootstrap-css/assets/images/SciPy2018_thmb.png' %}"></a>
+                    <a href="{% static 'website/bootstrap-css/assets/images/SciPy2019_pstr.png'%}" target="_blank"><img class="img-responsive center-block img-logo" src="{% static 'website/bootstrap-css/assets/images/SciPy2019_thmb.png' %}"></a>
                 </div>
             </div>
     </section>
@@ -608,7 +567,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-10.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -617,7 +576,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-4.jpg' %}" style="width: 250px; height: 180px" 
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -626,7 +585,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-2.jpg' %}" style="width: 250px; height: 180px" 
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
 
@@ -636,7 +595,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-3.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -645,7 +604,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-1.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -654,7 +613,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-5.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -663,7 +622,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-6.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -672,7 +631,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-7.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -681,7 +640,7 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-8.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017"> 
+                                 alt="Scipy 2018"> 
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
@@ -690,11 +649,19 @@
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
                                  src="{% static 'website/bootstrap-css/assets/images/photos/photos-9.jpg' %}" style="width: 250px; height: 180px"
-                                 alt="Scipy 2017">
+                                 alt="Scipy 2018">
+                        </a>
+                    </div>
+                     <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+                        <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title=""
+                           data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-11.jpg' %}"
+                           data-target="#image-gallery">
+                            <img class="img-thumbnail"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-11.jpg' %}" style="width: 250px; height: 180px"
+                                 alt="Scipy 2018">
                         </a>
                     </div>                   
                 </div>
-
 
                 <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
@@ -747,23 +714,6 @@
             </div>
     </section>
 
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-<img class="src-image"  src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}"/>
-
 <div class="modal fade" id="announce_cfp" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -771,7 +721,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
-          <p class="text-justify">Call for Papers opens on : TBD</p>
+          <p class="text-justify">Call for Papers will open soon</p>
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
