@@ -147,3 +147,17 @@ class Profile(models.Model):
             self.user.last_name,
             self.user.email
         )
+
+class CFP(models.Model):
+    start_date = models.DateTimeField(blank=True, null = True)
+    end_date = models.DateTimeField(blank=True, null=True)
+    date_of_announcement = models.DateTimeField(blank = True, null=True)
+    receive_proposals = models.BooleanField(default=True)
+
+
+class RegistrationDetail(models.Model):
+    registration_type = models.CharField(max_length=50, blank= True, null= True)
+    start_date = models.DateTimeField(blank=True, null = True)
+    end_date = models.DateTimeField(blank=True, null=True)
+    registration_ticket = models.CharField(max_length=100, blank=True, null=True)
+    registration_description = models.CharField(max_length=250, blank= True, null= True)
