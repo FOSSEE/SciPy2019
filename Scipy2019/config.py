@@ -1,8 +1,9 @@
-DB_NAME_DEFAULT = 'SciPy2019'
+DB_NAME_DEFAULT = 'scipy2019'
 DB_USER_DEFAULT = 'root'
 DB_PASS_DEFAULT = 'root'
 DB_HOST_DEFAULT = 'localhost'
 DB_PORT_DEFAULT = ''
+SECRET_KEY_VAL = ''
 ########################################
 GOOGLE_KEY = 'GOOGLE_KEY'
 GOOGLE_SECRET = 'GOOGLE_SECRET'
