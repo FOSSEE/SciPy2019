@@ -42,10 +42,8 @@ def index(request):
     context = {}
     registration_details = RegistrationDetail.objects.all()
     context['registration_details'] = registration_details
-    # regular_dates = ImportantDate.objects.get(category='Regular')
-    # context['regular_dates'] = regular_dates
-    # lite_dates = ImportantDate.objects.get(category='Lite')
-    # context['lite_dates'] = lite_dates
+    cfp_dates = CFP.objects.get(id=1)
+    context['cfp_dates'] = cfp_dates
     template = loader.get_template('index.html')
     return HttpResponse(template.render(context, request))
 
