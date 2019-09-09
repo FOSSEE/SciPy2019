@@ -65,33 +65,32 @@
         </div><!-- container -->
     </section>
 
-   <!--  <section id="speakers" class="section speakers">
+    <section id="speakers" class="section speakers">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <h3 class="section-title">Speakers</h3>         
                 </div>
             </div>
-
+            <center>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="speaker">
                     <h4>Keynote Speaker</h4>
                         <figure>
-                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/dummy.png' %}" data-toggle="modal" data-target="#speaker1">
+                            <img alt="" class="img-responsive center-block img-rounded" style="width:179px;height:198px;" src="{% static 'website/bootstrap-css/assets/images/speakers/keynote_speaker.jpg' %}" data-toggle="modal" data-target="#speaker1">
                         </figure>
-                        <h4>TBD</h4>
-                        <p>TBD</p>
+                        <h4>Michael Droettboom</h4>
                         <div class="modal fade spkrmodal" id="speaker1" role="dialog">
                         <div class="modal-dialog">
                          
                           <div class="modal-content">
                             <div class="modal-header">
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
-                              <h4 class="modal-title">TBD</h4>
+                              <h4 class="modal-title">Michael Droettboom</h4>
                             </div>
                             <div class="modal-body">
-                              <p class="text-justify">TBD</p>
+                              <p class="text-justify">Michael Droettboom is a Staff Data Engineer at Mozilla. There, he is working with a team that collects data on a massive scale that, unlike most of the big tech companies, respects user agency, privacy and transparency.  Prior to that, he has a history of applying machine learning and data science to such diverse as fields as neuroscience, astronomy, medieval manuscripts and 19th century American sheet music.  He contributes to many open source projects, was the lead developer of matplotlib, and the original author of airspeed velocity and Pyodide.</p>
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
@@ -101,15 +100,15 @@
                         </div>
 
                         <ul class="social-block">
-                            <li><a href="#" target="_blank"><i class="fa fa-globe"></i></a></li>
-                            <li><a href="https://www.linkedin.com/in/serge-rey-94748876/" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li> 
-                            <li><a href="#" target="_blank"><i class="ion-social-github"></i></a></li>
+                            <li><a href="http://droettboom.com/" target="_blank"><i class="fa fa-globe"></i></a></li>
+                            <li><a href="http://linkedin.com/in/mdboom" target="_blank"><i class="ion-social-linkedin-outline"></i></a></li> 
+                            <li><a href="https://github.com/mdboom" target="_blank"><i class="ion-social-github"></i></a></li>
                         </ul>
 
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <!-- <div class="col-md-6">
                     <div class="speaker">
                     <h4>Keynote Speaker</h4>
                         <figure>
@@ -144,10 +143,11 @@
                         </ul>
 
                     </div>
-                </div>
+                </div> -->
             </div>
+            </center>
         </div>
-    </section> -->
+    </section>
 
     <section id="registration" class="section registration">
       <div class="container">
@@ -195,39 +195,6 @@
                     </td>
                     </tr> 
                     {% endfor %}
-                    <!-- <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          <p class="text-justify">This Ticket allows you to <strong>ONLY</strong> attend the conference for 2 Days (snacks for two days will be served). Does not include any conference amenities (Accommodation, Lunch &amp; T-shirt).This is a non-refundable ticket.  </p>
-                        </div>
-                    </td>
-                    </tr>
-                    <tr>
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          <strong>On-Spot Registration</strong>
-                          <br>Regular - INR 2000 <br>(Inclusive of GST)
-                          <br>Subject to Availability
-
-                        </div>
-                    </td> 
-                    <tr>
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          <strong>On-Spot Registration</strong><br>
-                            Lite - INR 1000 <br>
-                            (Inclusive of GST)<br>
-                            Subject to Availability
-
-                        </div>
-                    </td>
-                    <td style="border-top:none;!important">
-                        <div class="align-baseline">
-                          <p class="text-justify">
-                            This ticket allows you to <strong>ONLY</strong> attend the conference (tutorials + talks) for 2 Days (snacks for two days will be served). Does not include Accommodation, Lunch &amp; T-Shirt. This is a non-refundable ticket. 
-                          </p>
-                        </div>
-                    </td>
-                    </tr> -->
                     <tr>
                         <td colspan="2">
                             <p class="text-justify">
@@ -325,7 +292,7 @@
       </div>      
     </section>
 
-    <!-- <section id="important_dates" class="section important_dates">
+    <section id="important_dates" class="section important_dates">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -334,14 +301,14 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <h4>Call for Papers opens on: {{ cfp_dates.cfp_start_date| date:"d F Y" }}</h4>
+                    <h4>Call for Papers opens on: {{ cfp_dates.start_date| date:"d F Y" }}</h4>
                 </div>
                 <div class="col-md-6">
-                    <h4>Call for Papers closes on: {{ cfp_dates.cfp_end_date| date:"d F Y" }}</h4>
+                    <h4>Call for Papers closes on: {{ cfp_dates.end_date| date:"d F Y" }}</h4>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
     <section id="contribution" class="section contribution">
         <div class="container">
@@ -552,7 +519,7 @@
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <a href="{% static 'website/bootstrap-css/assets/images/SciPy2019_pstr.png'%}" target="_blank"><img class="img-responsive center-block img-logo" src="{% static 'website/bootstrap-css/assets/images/SciPy2019_thmb.png' %}"></a>
+                    <a href="{% static 'website/bootstrap-css/assets/pdf/SciPy2019_pstr.pdf'%}" target="_blank"><img class="img-responsive center-block img-logo" src="{% static 'website/bootstrap-css/assets/images/SciPy2019_thmb.png' %}"></a>
                 </div>
             </div>
     </section>
@@ -572,7 +539,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-10.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-10.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-10.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -581,7 +548,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-4.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-4.jpg' %}" style="width: 250px; height: 180px" 
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-4.jpg' %}" width="100%" 
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -590,7 +557,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-2.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-2.jpg' %}" style="width: 250px; height: 180px" 
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-2.jpg' %}" width="100%" 
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -600,7 +567,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-3.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-3.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-3.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -609,7 +576,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-1.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-1.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-1.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -618,7 +585,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-5.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-5.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-5.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -627,7 +594,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-6.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-6.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-6.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -636,7 +603,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-7.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-7.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-7.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -645,7 +612,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-8.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-8.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-8.jpg' %}" width="100%"
                                  alt="Scipy 2018"> 
                         </a>
                     </div>
@@ -654,7 +621,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-9.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-9.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-9.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>
@@ -663,7 +630,7 @@
                            data-image="{% static 'website/bootstrap-css/assets/images/photos/photos-11.jpg' %}"
                            data-target="#image-gallery">
                             <img class="img-thumbnail"
-                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-11.jpg' %}" style="width: 250px; height: 180px"
+                                 src="{% static 'website/bootstrap-css/assets/images/photos/photos-11.jpg' %}" width="100%"
                                  alt="Scipy 2018">
                         </a>
                     </div>                   
