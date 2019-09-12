@@ -153,7 +153,7 @@ def cfp(request):
                 proposals = Proposal.objects.filter(user=request.user).count()
                 context['user'] = user
                 #context['cfp_dates'] = 'August 20'
-                return redirect('/cfp')
+                return redirect('/2019/cfp')
                 #template = loader.get_template('index.html')
                 #return render(request, 'index.html', context)
             else:
@@ -970,19 +970,19 @@ def user_register(request):
                 key=key
             )
 
-            return redirect('/cfp')
+            return redirect('/2019/cfp')
         else:
             if request.user.is_authenticated:
-                return redirect('/view_profile/')
+                return redirect('/2019/view_profile/')
             return render(
                 request, "user-register.html",
                 {"form": form}
             )
     else:
         if request.user.is_authenticated and is_email_checked(request.user):
-            return redirect('/view-abstracts/')
+            return redirect('/2019/view-abstracts/')
         elif request.user.is_authenticated:
-            return redirect('/cfp')
+            return redirect('/2019/cfp')
         form = UserRegistrationForm()
     return render(request, "user-register.html", {"form": form})
 # required for ticket booking
