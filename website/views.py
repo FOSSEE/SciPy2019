@@ -274,7 +274,7 @@ def submitcfw(request):
                     headers={"Content-type": "text/html;charset=iso-8859-1"}
                 )
                 email.attach_alternative(message, "text/html")
-                # email.send(fail_silently=True)
+                email.send(fail_silently=True)
                 return render_to_response('cfp.html', context)
             else:
                 context['proposal_form'] = form
