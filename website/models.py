@@ -160,4 +160,4 @@ class RegistrationDetail(models.Model):
     start_date = models.DateTimeField(blank=True, null = True)
     end_date = models.DateTimeField(blank=True, null=True)
     registration_ticket = models.CharField(max_length=100, blank=True, null=True)
-    registration_description = models.CharField(max_length=250, blank= True, null= True)
+    registration_description = models.TextField(max_length=500, blank= True, null= True)
