@@ -125,10 +125,11 @@ It provides a unique opportunity to discuss about the latest trends on Scientifi
                     </td>
                     </tr>
                     {% for registration_detail in registration_details %}
+                    {% if registration_detail.display_registration_type %}
                     <tr>
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
-                          {{ registration_detail.registration_type }}<br>
+                          {{ registration_detail.registration_type| safe }}<br>
                           {% if not registration_detail.start_date %}
                           (till {{ registration_detail.end_date|  date:"d M Y"}})<br>
                           {% else %} 
@@ -143,6 +144,7 @@ It provides a unique opportunity to discuss about the latest trends on Scientifi
                         </div>
                     </td>
                     </tr> 
+                    {% endif %}
                     {% endfor %}
                     <tr>
                         <td colspan="2">

@@ -156,8 +156,9 @@ class CFP(models.Model):
 
 
 class RegistrationDetail(models.Model):
-    registration_type = models.CharField(max_length=50, blank= True, null= True)
+    registration_type = models.TextField(max_length=500, blank= True, null= True)
     start_date = models.DateTimeField(blank=True, null = True)
     end_date = models.DateTimeField(blank=True, null=True)
     registration_ticket = models.CharField(max_length=100, blank=True, null=True)
     registration_description = models.TextField(max_length=500, blank= True, null= True)
+    display_registration_type = models.BooleanField(default = True)
