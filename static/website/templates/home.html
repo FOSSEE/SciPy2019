@@ -147,13 +147,19 @@ It provides a unique opportunity to discuss about the latest trends on Scientifi
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
                           {{ registration_detail.registration_type| safe }}<br>
-                          {% if not registration_detail.start_date %}
+                          {% if not registration_detail.start_date and not registration_detail.end_date %}
+                          <span style="color: red;">Registrations are closed</span><br>
+                          {% elif not registration_detail.start_date %}
                           (till {{ registration_detail.end_date|  date:"d M Y"}})<br>
-                          {% else %} 
+                          {% else %}
                           ({{ registration_detail.start_date|  date:"d M Y"}} to {{ registration_detail.end_date|  date:"d M Y"}})<br>
+
                           {% endif %}
+
+                          {% if registration_detail.registration_ticket %}
                           {{registration_detail.registration_ticket}}
-                        </div>
+                          {% endif %}
+                          </div>
                     </td>
                     <td style="border-top:none;!important">
                         <div class="align-baseline">
