@@ -721,34 +721,28 @@ def status_change(request):
                         subject = "SciPy India 2019 - Talk Proposal Accepted"
 
                         message = """Dear {0}, \n
-Thank you for your excellent submission!  Your talk has been accepted! We have allotted 20 minutes for each talk.  Of these 20 minutes, please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
+Thank you for your submission to SciPy India 2019!  We are pleased to inform you that your talk has been accepted!  We will be finalizing the rough schedule of the talks in a couple of days and will update you regarding the duration of your talk along with additional details.  It will be for either 15 minutes or 20 minutes at most in total including Q&A.  
 
-Please also keep handy a PDF version of your talk in case your own laptop has a problem.
+Please confirm your participation via return email on or before 08 November(Friday).  The tentative schedule will be put up in a few days.  We look forward to hearing your talk and seeing you at SciPy India 2019.
 
-Please confirm your participation via an email to scipy@fossee.in on or before 17 December 2019.  We shall be waiving the registration fee for the speakers. Please fill this form ({1}) to give your details. In case you have already registered we shall reimburse the registration charges at the conference venue.The tentative schedule will be put up online by end of the day. 
-
-We look forward to hearing your talk.
-
-Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
+Thank You ! \n\nRegards,\nSciPy India 2019 Program Chairs,\nFOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
-                            'https://tinyurl.com/scipy18-speakers'
                         )
                     elif proposal.proposal_type == 'WORKSHOP':
                         subject = "SciPy India 2019 - Workshop Proposal Accepted"
                         message = """Dear {0}, \n
-Thank you for your excellent submission!  We are pleased to accept your workshop. Each workshop is allotted a time slot of 2 hours. Please plan for 1 hour and 55 minutes in order to give the participants a 10 minute break between workshops for tea.
+Thank you for your submission at SciPy India 2019!  We are pleased to accept your workshop. Each workshop is allotted a time slot of 2 hours. Please plan for 1 hour and 55 minutes in order to give the participants a 10 minute break between workshops for tea.
 
-The tentative schedule will be put up on the website shortly. Please confirm your participation via an email to scipy@fossee.in on or before 17 December 2019. We shall be waiving the registration fee for the speakers. Please fill this form ({1}) to give your details. In case you have already registered we shall reimburse the registration charges at the conference venue.
+The tentative schedule will be put up on the website in a few days. Please confirm your participation via an email to scipy@fossee.in on or before 08 November, 2019(Friday). We shall be waiving the registration fee for the speakers. In case you have already registered we shall reimburse the registration charges at the conference venue.
 
 We also request you to provide detailed instructions for the participants (and the organizers if they need to do something for you). These instructions will be made available on the conference website. Installation is often a problem, so please make sure your instructions are simple and easy to follow.  If you wish, we could allow some time on the previous day for installation help.  Let us know about this.  Also, do not waste too much time on installation during your workshop.
 
-We strongly suggest that you try to plan your workshops carefully and focus on doing things hands-on and not do excessive amounts of theory. Try to give your participants a decent overview so they can pick up additional details on their own. It helps to pick one or two overarching problems you plan to solve and work your way through the solution of those. 
+We strongly suggest that you try to plan your workshops carefully and focus on doing things hands-on and not do excessive amounts of theory. Try to give your participants a decent overview so they can pick up additional details on their own. It helps to pick one or two overarching problems you plan to solve and work your way through the solution of those.
 
-Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
+Thank You ! \n\nRegards,\nSciPy India 2019 Program Chairs,\nFOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
-                            'https://tinyurl.com/scipy18-speakers'
                         )
                     email = EmailMultiAlternatives(
                     subject, message,
@@ -777,7 +771,7 @@ Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
                     to = (proposal.user.email)
                     if proposal.proposal_type == 'ABSTRACT':
                         subject = "SciPy India 2019 - Talk Proposal Rejected"
-                        message = """Dear """+proposal.user.first_name+""",
+                        message = """Dear """+proposal.user.first_name+""",\n
 Thank you for your submission to the conference.  Unfortunately, due to a large number of excellent talks that were submitted, your talk was not selected.  We hope you are not discouraged and request you to kindly attend the conference and participate.  We have an excellent line up of workshops (8 in total) and many excellent talks. If you wish to give a lightning talk (a short 5 minute talk) at the conference please let us know on the day of the conference.
 
 We look forward to your active participation in the conference.                  
@@ -790,7 +784,7 @@ Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay."""
                     # \n\nRegards,\n\nSciPy India Program chairs"""
                     elif proposal.proposal_type == 'WORKSHOP':
                         subject = "SciPy India 2019 - Workshop Proposal Rejected"
-                        message = """Dear """+proposal.user.first_name+""",
+                        message = """Dear """+proposal.user.first_name+""",\n
 Thank you for your submission to the conference.  Unfortunately, due to a large number of excellent workshops submitted, yours was not selected.  We hope you are not discouraged and request you to kindly attend the conference and participate.  We have an excellent line up of workshops (8 in total) and many excellent talks. If you wish to give a lightning talk (a short 5 minute talk) at the conference please let us know on the day of the conference.
 
 We look forward to your active participation in the conference.
@@ -826,16 +820,15 @@ Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay."""
                     to = (proposal.user.email, TO_EMAIL)
                     if proposal.proposal_type == 'ABSTRACT':
                         subject = "SciPy India 2019 - Talk Proposal Acceptance"
-                        message = """
-                        Dear {0}, <br><br>
-                        Thank you for your excellent submissions!  Your talk has been accepted! This year, we have received many really good submissions.  Due to the number and quality of the talks this year we have decided to give 20 minute slots to all the accepted talks.  So even though you may have submitted a 30 minute one, we are sorry you will only have 20 minutes.  Of these 20 minutes, please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
+                        message = """Dear {0}, \n
+Thank you for your excellent submissions!  Your talk has been accepted! This year, we have received many really good submissions.  Due to the number and quality of the talks this year we have decided to give 20 minute slots to all the accepted talks.  So even though you may have submitted a 30 minute one, we are sorry you will only have 20 minutes.  Of these 20 minutes, please plan to do a 15 minute talk (we will strive hard to keep to time), and keep 5 minutes for Q&A and transfer.  We will have the next speaker get ready during your Q&A session in order to not waste time.
 
 Pardon the unsolicited advice but it is important that you plan your presentations carefully. 15 minutes is a good amount of time to communicate your central idea. Most really good TED talks finish in 15 minutes.  Keep your talk focussed and please do rehearse your talk and slides to make sure it flows well. 
 
 We (the program chairs) are happy to help you by giving you some early feedback on your slides.  Just upload your slides before 26th and we will go over it once.  You may upload your slides by clicking on edit when you login to the site.  You may also modify your abstract if you want to improve it.  For anything submitted after 26th we may not have time to comment but will try to give you feedback.  Please also keep handy a PDF version of your talk in case your own laptops have a problem.
 
 Please confirm your participation via return email.  The tentative schedule will be put up online by end of day.  We look forward to hearing your talk.
-Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
+Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
                             proposal.title,
@@ -843,11 +836,10 @@ Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
                         )
                     elif proposal.proposal_type == 'WORKSHOP':
                         subject = "SciPy India 2019 - Workshop Proposal Resubmission"
-                        message = """
-                        Thank you for showing interest & submitting a workshop proposal at SciPy India 2019 conference for the workshop titled <b>"{1}"</b>. You are requested to submit this talk proposal once        again.<br>
-                        You will be notified regarding comments/selection/rejection of your workshop via email.
-                        Visit this {2} link to view comments on your submission.<br><br>
-                        Thank You ! <br><br>Regards,<br>SciPy India 2019,<br>FOSSEE - IIT Bombay.
+                        message = """Dear {0}, \n
+Thank you for showing interest & submitting a workshop proposal at SciPy India 2019 conference for the workshop titled <b>"{1}"</b>. You are requested to submit this talk proposal once again.\n
+You will be notified regarding comments/selection/rejection of your workshop via email. Visit this {2} link to view comments on your submission.\n\n
+Thank You ! \n\nRegards,\nSciPy India 2019,\nFOSSEE - IIT Bombay.
                         """.format(
                             proposal.user.first_name,
                             proposal.title,
