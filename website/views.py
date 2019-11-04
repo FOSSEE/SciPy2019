@@ -746,7 +746,7 @@ Thank You ! \n\nRegards,\nSciPy India 2019 Program Chairs,\nFOSSEE - IIT Bombay.
                         )
                     email = EmailMultiAlternatives(
                     subject, message,
-                    sender_email, [to], cc=[cc_email], bcc = [bcc_email],
+                    sender_email, [to], cc=[cc_email],
                     headers={"Content-type": "text/html;charset=iso-8859-1"}
                 )
                 #email.attach_alternative(message, "text/html")
