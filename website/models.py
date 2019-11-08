@@ -162,3 +162,8 @@ class RegistrationDetail(models.Model):
     registration_ticket = models.CharField(max_length=100, blank=True, null=True)
     registration_description = models.TextField(max_length=500, blank= True, null= True)
     display_registration_type = models.BooleanField(default = True)
+
+class TentativeSchedule(models.Model):
+    schedule_table = models.TextField(blank=True, null= True)
+    display_schedule_table = models.BooleanField(default = True)
+        

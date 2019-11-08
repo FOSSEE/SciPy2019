@@ -12,7 +12,7 @@ from django.views.decorators.csrf import (csrf_exempt, csrf_protect,
                                           requires_csrf_token)
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from website.models import Proposal, Comments, Ratings, CFP, RegistrationDetail
+from website.models import Proposal, Comments, Ratings, CFP, RegistrationDetail, TentativeSchedule
 
 from website.forms import (ProposalForm, UserRegisterForm, UserRegistrationForm,
                            UserLoginForm, WorkshopForm)  # ,ContactForm
@@ -42,8 +42,10 @@ def index(request):
     context = {}
     registration_details = RegistrationDetail.objects.all()
     context['registration_details'] = registration_details
-    cfp_dates = CFP.objects.get(id=1)
+    cfp_dates = CFP.objects.first()
     context['cfp_dates'] = cfp_dates
+    tentative_schedule = TentativeSchedule.objects.first()
+    context['tentative_schedule'] = tentative_schedule
     template = loader.get_template('index.html')
     return HttpResponse(template.render(context, request))
 
