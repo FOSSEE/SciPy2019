@@ -770,7 +770,7 @@ Thank You ! \n\nRegards,\nSciPy India 2019 Program Chairs,\nFOSSEE - IIT Bombay.
                     sender_email = TO_EMAIL
                     cc_email = CC_EMAIL
                     bcc_email = BCC_EMAIL
-                    to = [proposal.user.email]
+                    to = (proposal.user.email)
                     if proposal.proposal_type == 'ABSTRACT':
                         subject = "SciPy India 2019 - Talk Proposal Rejected"
                         message = """Dear """+proposal.user.first_name+""",\n
@@ -789,7 +789,7 @@ We look forward to your active participation in the conference.
 Thank You! \n\nRegards,\nSciPy India 2019 Program Chairs,\nFOSSEE - IIT Bombay."""
                     email = EmailMultiAlternatives(
                         subject, message,
-                        sender_email, to = [to], cc=[cc_email], bcc = [bcc_email],
+                        sender_email, [to], cc=[cc_email], bcc = [bcc_email],
                         headers={"Content-type": "text/html;charset=iso-8859-1"}
                     )
                     #email.attach_alternative(message, "text/html")
