@@ -162,7 +162,7 @@ It provides a unique opportunity to discuss about the latest trends on Scientifi
                         <div class="align-baseline">
                           {{ registration_detail.registration_type| safe }}<br>
                           {% if not registration_detail.start_date and not registration_detail.end_date %}
-                          <span style="color: red;">Registrations are closed</span><br>
+                          <span style="color: red;">On Spot<br> Subject to availability</span><br>
                           {% elif not registration_detail.start_date %}
                           (till {{ registration_detail.end_date|  date:"d M Y"}})<br>
                           {% else %}
@@ -385,6 +385,37 @@ It provides a unique opportunity to discuss about the latest trends on Scientifi
     </section>
     {% endif %}
 
+    <section id="instructions" class="section instructions" style="font-weight: 400;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                <h3 class="section-title">Instructions</h3>
+                    <table class="table table-bordered" style="text-align: justify;">
+                     <tbody>
+                        <!-- <tr>
+                           <td>General Instructions</td>
+                           <td width="60%">These instructions give you details about the venue and accommodation. It will also help you during the stay at IIT Bombay. </td>
+                           <td><a href="https://static.fossee.in/python/scipy2018/Information-Guide-for-SciPy-India-2018-Conference.pdf" target="_blank">View here</a> </td>
+                        </tr> -->
+                        <!--
+                        <tr>
+                           <td>SciPy 2017: <br>Preferred Workshop Track</td>
+                           <td>Please select the workshop in which you wish to participate (Satellite conference registrants need not submit this form).</td>
+                           <td><a href="http://tinyurl.com/SciPy2016-Workshop" target="_blank">View here</a> </td>
+                        </tr> -->
+                        <tr>
+                           <td>Workshop Instructions</td>
+                           <td>These instructions are for all the participants. It has the details of the workshops which will be conducted in SciPy India 2019 conference. Please read it carefully and follow the steps to install various software packages.<br>
+                              <b>Note:</b> You will not be able to participate in the workshops without installing the above packages. There will not be any separate setup session at the venue.
+                           </td>
+                           <td><a href="https://static.fossee.in/python/scipy2019/scipy19_instruction_sheet.pdf" target="_blank">View here</a> </td>
+                        </tr>
+                     </tbody>
+                     </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="venue" class="section venue">
         <div class="container">
